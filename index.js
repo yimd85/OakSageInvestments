@@ -18,11 +18,11 @@ app.get('/', async (request, response) => {
     // const numPages = await yarray.length;
     console.log(yarray.length);
     console.log(yarray[0]);
-    for(let i=0; i<y.length; i++){
-        // for(let i=0; i<yarray.length; i++){
+    // for(let i=0; i<y.length; i++){
+        for(let i=0; i<yarray.length; i++){
             // await axios.get(`https://api.intrinio.com/data_point?identifier=${y[i]}&item=next_earnings_date`,
-                        await axios.get(`https://api.intrinio.com/fundamentals/standardized?identifier=${y[i]}&statement=income_statement&type=QTR&date=09/24/3018&page_size=1`,
-            // await axios.get(`https://api.intrinio.com/data_point?identifier=${yarray[i]}&item=cashandequivalents,totalliabilities,weightedavedilutedsharesos,adj_close_price`,
+                        // await axios.get(`https://api.intrinio.com/fundamentals/standardized?identifier=${y[i]}&statement=income_statement&type=QTR&date=09/24/3018&page_size=1`,
+            await axios.get(`https://api.intrinio.com/data_point?identifier=${yarray[i]}&item=cashandequivalents,totalliabilities,weightedavedilutedsharesos,adj_close_price`,
                 {
                     headers: {'Authorization': auth}
                 }).then(response => {

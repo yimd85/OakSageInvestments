@@ -4,20 +4,20 @@ require('dotenv').config();
 
 const app = express();
 
-const username = process.env.DB_USERSY;
-const password = process.env.DB_PASSWORDSY;
+const username = process.env.DB_USERRY;
+const password = process.env.DB_PASSWORDRY;
 
 const x = require('./stocks');
 
 const auth = 'Basic ' + new Buffer(username + ':' + password).toString('base64');
 
 app.get('/', async (request, response) => {
-        for (let i = 0; i < x.russell3000.length; i++) { 
-            await axios.get(`https://api.intrinio.com/fundamentals/standardized?identifier=${x.russell3000[i]}&statement=income_statement&type=QTR&date=2018-09-27&page_size=1`,
+    for (let i = 0; i < x.russell3000C.length; i++) { 
+            await axios.get(`https://api.intrinio.com/fundamentals/standardized?identifier=${x.russell3000C[i]}&statement=income_statement&type=QTR&date=2018-09-27&page_size=1`,
                 {
                     headers: {'Authorization': auth}
                 }).then(response => {
-                    console.log(x.russell3000[i],'!',response.data.data[0].filing_date);
+                    console.log(x.russell3000C[i],'!',response.data.data[0].filing_date);
                 }).catch(() => {
                     console.log('null could not get');
             });

@@ -12,7 +12,7 @@ const x = require('./stocks');
 const auth = 'Basic ' + new Buffer(username + ':' + password).toString('base64');
 
 app.get('/', async (request, response) => {
-    for (let i = 0; i < x.russell3000C.length; i++) { 
+    for (let i = 0; i < x.russell3000C.length; i++) {
             await axios.get(`https://api.intrinio.com/fundamentals/standardized?identifier=${x.russell3000C[i]}&statement=income_statement&type=QTR&date=2018-09-27&page_size=1`,
                 {
                     headers: {'Authorization': auth}
@@ -23,8 +23,8 @@ app.get('/', async (request, response) => {
             });
 
         }
-        
-                   
+
+
     response.send('x');
 });
 
@@ -32,6 +32,7 @@ app.get('/', async (request, response) => {
 
 app.get('/what', (request, response) => {
     // console.log(z);
+    //this is a test
         // let ops = [];
     // const numPages = await yarray.length;
     // console.log(yarray.length);

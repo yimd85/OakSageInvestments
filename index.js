@@ -55,3 +55,23 @@ app.listen(8000, () => {
     console.log('listening on port 8000');
 });
 
+
+//Financials - Income Statement
+
+//https://api.intrinio.com/financials/standardized?identifier=SBUX&statement=income_statement&type=QTR
+
+
+//Financials - Balance Sheet
+
+//https://api.intrinio.com/financials/standardized?identifier=SBUX&statement=balance_sheet&type=QTR
+
+
+//Financials - Cash Flow
+
+//https://api.intrinio.com/financials/standardized?identifier=SBUX&statement=cash_flow_statement&type=QTR
+
+//Financials - Intrinio Calculations
+
+//https://api.intrinio.com/financials/standardized?identifier=SBUX&statement=calculations&type=QTR
+
+

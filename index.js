@@ -4,8 +4,8 @@ require('dotenv').config();
 
 const app = express();
 
-const username = process.env.DB_USERJaeL;
-const password = process.env.DB_PASSWORDJaeL;
+const username = process.env.DB_USERJL;
+const password = process.env.DB_PASSWORDJL;
 
 const x = require('./stocks');
 
@@ -66,6 +66,7 @@ app.get('/test', async (request, response) => {
     }
 response.send('x');
 });
+
 
 
 app.listen(8000, () => {

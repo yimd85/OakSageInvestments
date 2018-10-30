@@ -4,8 +4,8 @@ require('dotenv').config();
 
 const app = express();
 
-const username = process.env.DB_USERJaeL;
-const password = process.env.DB_PASSWORDJaeL;
+const username = process.env.DB_USERJL;
+const password = process.env.DB_PASSWORDJL;
 
 const x = require('./stocks');
 
@@ -53,9 +53,24 @@ app.get('/cash', async (request, response) => {
 });
 
 
+app.get('/calculation', async (request, response) => {
+    for (let i = 0; i < x.russell3000.length; i++) { 
+        await axios.get(`https://api.intrinio.com/financials/standardized?identifier=${x.russell3000[i]}&statement=calculations&type=QTR`,
+            {
+                headers: {'Authorization': auth}
+            }).then(response => {
+                console.log(x.russell3000[i],'!',response.data.data);
+            }).catch(() => {
+                console.log('null could not get');
+        });   
+    }
+response.send('x');
+});
+
 app.get('/test', async (request, response) => {
     for (let i = 0; i < x.russell3000X.length; i++) { 
-        await axios.get(`https://api.intrinio.com/financials/standardized?identifier=${x.russell3000X[i]}&statement=calculations&type=QTR`,
+        await axios.get(`https://api.intrinio.com/financials/standardized?identifier=${x.russell3000X[i]}&statement=balance_sheet&type=QTR`,
+  
             {
                 headers: {'Authorization': auth}
             }).then(response => {

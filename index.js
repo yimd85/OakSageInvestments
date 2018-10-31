@@ -4,8 +4,8 @@ require('dotenv').config();
 
 const app = express();
 
-const username = process.env.DB_USERJaeL;
-const password = process.env.DB_PASSWORDJaeL;
+const username = process.env.DB_USERNC;
+const password = process.env.DB_PASSWORDNC;
 
 const x = require('./stocks');
 

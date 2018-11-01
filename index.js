@@ -4,8 +4,8 @@ require('dotenv').config();
 
 const app = express();
 
-const username = process.env.DB_USERNC;
-const password = process.env.DB_PASSWORDNC;
+const username = process.env.DB_USERJL;
+const password = process.env.DB_PASSWORDJL;
 
 const x = require('./stocks');
 
@@ -67,7 +67,7 @@ app.get('/calculation', async (request, response) => {
 response.send('x');
 });
 
-app.get('/test', async (request, response) => {
+app.get('/balancesheet', async (request, response) => {
     for (let i = 0; i < x.russell3000X.length; i++) { 
         await axios.get(`https://api.intrinio.com/financials/standardized?identifier=${x.russell3000X[i]}&statement=balance_sheet&type=QTR`,
   
@@ -84,27 +84,41 @@ response.send('x');
 
 
 
+app.get('/test', async (request, response) => {
+    for (let i = 0; i < x.russell3000Y.length; i++) { 
+        await axios.get(`https://api.intrinio.com/financials/standardized?identifier=${x.russell3000Y[i]}&statement=income_statement&type=QTR`,
+  
+            {
+                headers: {'Authorization': auth}
+            }).then(response => {
+                console.log(x.russell3000Y[i],'!',response.data.data);
+            }).catch(() => {
+                console.log('null could not get');
+        });   
+    }
+response.send('x');
+});
+
+
+
 app.listen(8000, () => {
     console.log('listening on port 8000');
 });
 
 
 //Financials - Income Statement
-
-//https://api.intrinio.com/financials/standardized?identifier=SBUX&statement=income_statement&type=QTR
-
-
-//Financials - Balance Sheet
-
-//https://api.intrinio.com/financials/standardized?identifier=SBUX&statement=balance_sheet&type=QTR
-
+//https://api.intrinio.com/financials/standardized?identifier=${x.russell3000Y[i]}&statement=income_statement&type=QTR
 
 //Financials - Cash Flow
-
 //https://api.intrinio.com/financials/standardized?identifier=SBUX&statement=cash_flow_statement&type=QTR
 
-//Financials - Intrinio Calculations
 
+
+//Financials - Intrinio Calculations (done)
 //https://api.intrinio.com/financials/standardized?identifier=SBUX&statement=calculations&type=QTR
+
+//Financials - Balance Sheet (done)
+//https://api.intrinio.com/financials/standardized?identifier=SBUX&statement=balance_sheet&type=QTR
+
 
 

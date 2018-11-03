@@ -84,7 +84,7 @@ response.send('x');
 
 
 
-app.get('/test', async (request, response) => {
+app.get('/incomestatement', async (request, response) => {
     for (let i = 0; i < x.russell3000Y.length; i++) { 
         await axios.get(`https://api.intrinio.com/financials/standardized?identifier=${x.russell3000Y[i]}&statement=income_statement&type=QTR`,
   
@@ -100,17 +100,26 @@ response.send('x');
 });
 
 
+app.get('/test', async (request, response) => {
+    for (let i = 0; i < x.russell3000Y.length; i++) { 
+        await axios.get(`https://api.intrinio.com/financials/standardized?identifier=${x.russell3000Y[i]}&statement=cash_flow_statement&type=QTR`,
+  
+            {
+                headers: {'Authorization': auth}
+            }).then(response => {
+                console.log(x.russell3000Y[i],'!',response.data.data);
+            }).catch(() => {
+                console.log('null could not get');
+        });   
+    }
+response.send('x');
+});
+
 
 app.listen(8000, () => {
     console.log('listening on port 8000');
 });
 
-
-//Financials - Income Statement
-//https://api.intrinio.com/financials/standardized?identifier=${x.russell3000Y[i]}&statement=income_statement&type=QTR
-
-//Financials - Cash Flow
-//https://api.intrinio.com/financials/standardized?identifier=SBUX&statement=cash_flow_statement&type=QTR
 
 
 
@@ -119,6 +128,12 @@ app.listen(8000, () => {
 
 //Financials - Balance Sheet (done)
 //https://api.intrinio.com/financials/standardized?identifier=SBUX&statement=balance_sheet&type=QTR
+
+//Financials - Income Statement (done)
+//https://api.intrinio.com/financials/standardized?identifier=${x.russell3000Y[i]}&statement=income_statement&type=QTR
+
+//Financials - Cash Flow (done)
+//https://api.intrinio.com/financials/standardized?identifier=SBUX&statement=cash_flow_statement&type=QTR
 
 
 
